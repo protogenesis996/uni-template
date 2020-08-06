@@ -58,6 +58,12 @@
 		"setting": {
 			"urlCheck": false
 		},
+		// 用户获取用户地理位置授权
+		"permission": {
+			"scope.userLocation": {
+				"desc": "你的位置信息将用于小程序位置"
+			}
+		},
 		"usingComponents": true
 	},
 	"mp-alipay" : {
