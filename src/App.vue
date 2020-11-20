@@ -16,13 +16,13 @@ import { getSystemInfo } from '@/utils/wxTool.js'
 			// 获取胶囊信息
 			getBoundingInfo () {
 				let bounding =	wx.getMenuButtonBoundingClientRect()
-				console.log(bounding);
+		
 				this.$store.commit('set_bounding', bounding)
 			},
 			// 系统信息
 			async getSystemInfo () {
 				const data = await getSystemInfo()
-				console.log(data);
+	
 				if (data.errMsg === 'getSystemInfo:ok') {
 					this.$store.commit('set_systemInfo', data)
 				}

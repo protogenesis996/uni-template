@@ -1,26 +1,52 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
+		<custom-navbar />
 		<view>
-			<text class="title">{{title}}</text>
+			<text class="title" @click="aa">{{title}}</text>
+			23132
+			<skeleton-com />
 		</view>
+		<image :src="item" v-for="item in  imageList" :key="item" @click="preview"></image>
 	</view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				title: 'Hello'
-			}
+// import CustomNavbar from '@/components/CustomNavbar/index.vue'
+// import ListLoadingTip from '@/components/ListLoadingTip/index.vue'
+import { example1 } from '@/mock/list'
+import { chooseImage, previewImage } from '@/utils/wxTool.js'
+export default {
+	components: {
+		// CustomNavbar,
+		// ListLoadingTip 
+	},
+	onLoad() {
+		// this.example1()
+	},
+	data() {
+		return {
+			title: 'Hello',
+			imageList: []
+		}
+	},
+	methods: {
+		async preview () {
+		const { status, data } = await previewImage('', this.imageList)
+			console.log(status, data);
 		},
-		onLoad() {
-
+		async aa () {
+		 const {status, data} = await chooseImage(2)
+		 if (status === 200) {
+			 console.log(data);
+			 this.imageList = data
+		 }
 		},
-		methods: {
-
+		async example1 () {
+			const res =	await example1()
+			console.log(res);
 		}
 	}
+}
 </script>
 
 <style>

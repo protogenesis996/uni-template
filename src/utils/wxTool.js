@@ -1,3 +1,9 @@
+
+const statusFlag = {
+    success: { status: 200 },
+    fail: {status: 500}
+}
+
 /**
  * @resolve { object } phone screen info
 */
@@ -85,5 +91,41 @@ export const getSystemInfo = () => {
      }).catch( e => e)
  }
 
+/**
+ * 选取相册或者手机拍照
+ * @param { Number } count 最多选择的图片数
+ * @resolve { Array } 图片链接数组
+ */
 
+export const chooseImage = (count) => {
+    return new Promise( (resolve, reject) => {
+        wx.chooseImage({
+            count,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success (res) {
+                // tempFilePath可以作为img标签的src属性显示图片
+                const tempFilePaths = res.tempFilePaths
+                resolve({...statusFlag.success, data: tempFilePaths})
+            },
+            fail: res => reject({...statusFlag.fail, data: res})
+        })
+    }).catch(e => e)
+}
 
+/**
+ * 图片预览
+ * @param { String } current  当前显示图片的链接
+ * @param { Array } urls 需要预览的图片链接列表
+ * @return { object }无
+ */
+export const previewImage = (current, urls) => {
+    return new Promise( (resolve, reject) => {
+        wx.previewImage({
+            current, 
+            urls, 
+            success: res => resolve({...statusFlag.success, data: res}),
+            fail: res => reject({...statusFlag.fail, data: res})
+        })
+    }).catch( e => e)
+}

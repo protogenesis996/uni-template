@@ -1,5 +1,5 @@
 <template>
-    <view class="CustomNavbar" >
+    <view class="custom-navbar" >
         <view class="empty" :style="{height: statusBarHeight + 2 +'px'}"></view>
         <view class="Navbar" :style="{height: ( bounding.top - statusBarHeight ) * 2 + bounding.height + 'px'}">
             <van-icon name="arrow-left" class="arrow-left"/>
@@ -29,10 +29,11 @@ export default {
     }
 }
 </script>
-<style scoped lang="less">
-.CustomNavbar {
+<style scoped lang="scss">
+.custom-navbar {
     background-color: #fff;
-    width: 100%;
+    // display: flex;
+    width: 100vw;
     z-index: 10;
     .empty {
         width: 100%;
@@ -46,7 +47,7 @@ export default {
             left: 40rpx;
         }
         .title {
-            font-size: 36rpx;
+            font-size: 30rpx;
             font-weight:500;
             position: absolute;
             left: 50%;
