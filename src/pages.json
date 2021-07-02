@@ -23,7 +23,7 @@
 		// 自定义导航栏
 		"navigationStyle": "custom",
 		"usingComponents": {
-			"van-icon": "/wxcomponents/vant/dist/icon/index"
+			"van-icon": "/wxcomponents/icon/index"
 		}
 	},
 	"tabBar": {

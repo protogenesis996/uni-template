@@ -3,6 +3,7 @@ import { getSystemInfo } from '@/utils/wxTool.js'
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
+			
 		},
 		onShow: function() {
 			console.log('App Show')
@@ -15,16 +16,16 @@ import { getSystemInfo } from '@/utils/wxTool.js'
 		methods: {
 			// 获取胶囊信息
 			getBoundingInfo () {
-				let bounding =	wx.getMenuButtonBoundingClientRect()
+				let bounding =	uni.getMenuButtonBoundingClientRect()
 		
-				this.$store.commit('set_bounding', bounding)
+				this.$store.commit('system/setBounding', bounding)
 			},
 			// 系统信息
 			async getSystemInfo () {
 				const data = await getSystemInfo()
 	
 				if (data.errMsg === 'getSystemInfo:ok') {
-					this.$store.commit('set_systemInfo', data)
+					this.$store.commit('system/setSystem', data)
 				}
 			},
 		}
